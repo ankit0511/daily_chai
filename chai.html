@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Assignments</title>
+<!-- Include Tailwind CSS -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-700 flex justify-center items-center h-screen">
+  <div class="g-gradient-to-br from-gray-900 to-gray-700 p-8 rounded shadow-md max-w-md w-full">
+    <h1 class="text-2xl font-bold mb-4 text-white"> Aaj Ka Kaam</h1>
+    <div id="tasks" class="text-lg text-white">
+    </div>
+  </div>
+
+  <script>
+    // List of three individuals
+    let individuals = ["Aayush", "Aman", "Ankit"];
+
+    // Get the current date
+    let today = new Date();
+
+    // Function to get the day of the year
+    function getDayOfYear(date) {
+      let start = new Date(date.getFullYear(), 0, 0);
+      let diff = date - start;
+      let oneDay = 1000 * 60 * 60 * 24;
+      return Math.floor(diff / oneDay);
+    }
+
+    // Calculate the index of the person responsible for each task
+    let dayOfYear = getDayOfYear(today);
+    let teaMakerIndex = dayOfYear % 3;
+    let utensilsWasherIndex = (dayOfYear + 1) % 3;
+    let milkBuyerIndex = (dayOfYear + 2) % 3;
+
+    // Assign tasks to individuals
+    let teaMaker = individuals[teaMakerIndex];
+    let utensilsWasher = individuals[utensilsWasherIndex];
+    let milkBuyer = individuals[milkBuyerIndex];
+
+    // Display the assignments
+    let tasksDiv = document.getElementById("tasks");
+    tasksDiv.innerHTML = `
+      <p><strong> Chai Bnana :</strong> ${teaMaker}</p>
+      <p><strong> Bartan Dhona :</strong> ${utensilsWasher}</p>
+      <p><strong> Dhoodh Laana :</strong> ${milkBuyer}</p>
+    `;
+  </script>
+</body>
+</html>
